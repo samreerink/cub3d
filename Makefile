@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2024/11/19 13:45:56 by sreerink      ########   odam.nl          #
+#    Updated: 2024/11/19 14:04:33 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIBFT=		./Libft/libft.a
 HEADERS=	-I ./Libft -I $(MLX)/include
 
 
-all:	$(NAME)
+all:	SUBMODULES_INIT $(NAME)
 
 $(MLX_LIB):
 	@if [ ! -f $(MLX_LIB) ]; then \
@@ -51,6 +51,9 @@ $(LIBFT):
 
 $(NAME): 	$(LIBFT) $(MLX_LIB) $(OBJ)
 	$(CC) $(OBJ) $(MLX_FLAGS) -L./Libft -lft -o $(NAME)
+
+SUBMODULES_INIT:
+	@git submodule update --init --recursive
 
 clean:
 	$(RM) $(OBJ)
