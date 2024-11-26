@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/26 17:52:18 by sreerink      #+#    #+#                 */
-/*   Updated: 2024/11/26 20:29:13 by sreerink      ########   odam.nl         */
+/*   Updated: 2024/11/26 21:19:48 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(void)
 	cube->mlx = mlx_init(1200, 800, "cub3d", false);
 	cube->foreground = mlx_new_image(cube->mlx, 1200, 800);
 	mlx_image_to_window(cube->mlx, cube->foreground, 0, 0);
-	cube->s = load_sprite_sheet("./player.png", 264, 264, cube->mlx);
-	cube->a = init_animation(cube->s, 6, 4, 120);
+	cube->s = load_sprite_sheet("./skeleton.png", 264, 264, cube->mlx);
+	cube->a = init_animation(cube->s, 6, 6, 120);
 	mlx_loop_hook(cube->mlx, cube_hook, cube);
 	mlx_loop(cube->mlx);
 	mlx_terminate(cube->mlx);
