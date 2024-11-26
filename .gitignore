@@ -1,1 +1,4 @@
 cub3D
+obj
+.cache
+*.json

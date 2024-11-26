@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2024/11/19 15:00:10 by sreerink      ########   odam.nl         */
+/*   Updated: 2024/11/26 19:13:22 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,13 @@
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../Libft/libft.h"
+# include "../MLX42_animation/include/MLX42_animation.h"
+
+typedef struct s_cube {
+	mlx_t		*mlx;
+	mlx_image_t	*foreground;
+	t_sprite	*s;
+	t_animation	*a;
+} t_cube;
 
 #endif

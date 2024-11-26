@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2024/11/26 17:46:25 by sreerink      ########   odam.nl          #
+#    Updated: 2024/11/26 20:12:16 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MLX=		./MLX42
 
 MLX_LIB=	$(MLX)/build/libmlx42.a
 
-MLX_FLAGS=	$(MLX_LIB) -ldl -lglfw -pthread -lm
+MLX_FLAGS=	-ldl -lglfw -pthread -lm
 
 LIBFT=		./Libft/libft.a
 
@@ -55,7 +55,7 @@ $(ANIM):
 	$(MAKE) -C ./MLX42_animation
 
 $(NAME): 	$(LIBFT) $(ANIM) $(MLX_LIB) $(OBJ)
-	$(CC) $(OBJ) $(MLX_FLAGS) -L./Libft -lft -o $(NAME)
+	$(CC) $(OBJ) $(ANIM) $(MLX_LIB) -L./Libft -L./MLX42_animation -lft $(MLX_FLAGS) -o $(NAME)
 
 SUBMODULES_INIT:
 	@git submodule update --init --recursive
