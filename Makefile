@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2024/11/26 17:34:40 by sreerink      ########   odam.nl          #
+#    Updated: 2024/11/26 17:46:25 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,10 +65,12 @@ clean:
 	$(RM) $(OBJ_DIR)
 	$(RM) $(MLX)/build
 	$(MAKE) -C ./Libft clean
+	$(MAKE) -C ./MLX42_animation clean
 
 fclean:	clean
 	$(RM) $(NAME)
 	$(MAKE) -C ./Libft fclean
+	$(MAKE) -C ./MLX42_animation fclean
 
 re:		fclean all
 
