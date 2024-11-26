@@ -1,5 +1,4 @@
 cub3D
 obj
-*.o
 .cache
 *.json
