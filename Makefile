@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2024/11/19 14:04:33 by sreerink      ########   odam.nl          #
+#    Updated: 2024/11/26 17:34:40 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ MLX_FLAGS=	$(MLX_LIB) -ldl -lglfw -pthread -lm
 
 LIBFT=		./Libft/libft.a
 
-HEADERS=	-I ./Libft -I $(MLX)/include
+ANIM=		./MLX42_animation/MLX42_animation.a
+
+HEADERS=	-I ./Libft -I ./MLX42_animation/include -I $(MLX)/include
 
 
 all:	SUBMODULES_INIT $(NAME)
@@ -49,7 +51,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(LIBFT):
 	$(MAKE) -C ./Libft
 
-$(NAME): 	$(LIBFT) $(MLX_LIB) $(OBJ)
+$(ANIM):
+	$(MAKE) -C ./MLX42_animation
+
+$(NAME): 	$(LIBFT) $(ANIM) $(MLX_LIB) $(OBJ)
 	$(CC) $(OBJ) $(MLX_FLAGS) -L./Libft -lft -o $(NAME)
 
 SUBMODULES_INIT:
