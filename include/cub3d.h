@@ -6,13 +6,14 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2024/11/26 19:13:22 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/14 14:53:21 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <stdio.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../Libft/libft.h"
 # include "../MLX42_animation/include/MLX42_animation.h"
@@ -23,5 +24,8 @@ typedef struct s_cube {
 	t_sprite	*s;
 	t_animation	*a;
 } t_cube;
+
+void	error_exit(char *msg, char *p_msg, t_cube *cube);
+void	exit_cube(void *ptr);
 
 #endif
