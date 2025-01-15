@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/12/17 22:41:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/14 14:49:11 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/15 14:56:17 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	free_cube(t_cube *cube)
 {
+	if (cube->mlx)
+		mlx_terminate(cube->mlx);
 	free(cube);
 }
 
@@ -40,6 +42,7 @@ void	exit_cube(void *ptr)
 	t_cube	*cube;
 
 	cube = (t_cube *)ptr;
-	free_cube(cube);
+	if (cube)
+		free_cube(cube);
 	exit(EXIT_SUCCESS);
 }
