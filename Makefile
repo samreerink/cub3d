@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2025/01/23 16:48:17 by sreerink      ########   odam.nl          #
+#    Updated: 2025/01/23 17:14:33 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC_DIR=	src
 OBJ_DIR=	obj
 
 SRCS=		$(addprefix $(SRC_DIR)/, main.c init_cube.c cube_hook.c \
-			exit_cube.c)	
+			key_input.c exit_cube.c)	
 
 OBJ=		$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 

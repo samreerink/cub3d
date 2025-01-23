@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   main.c                                            :+:    :+:             */
+/*   key_input.c                                       :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
-/*   Created: 2025/01/15 15:36:00 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/23 18:05:02 by sreerink      ########   odam.nl         */
+/*   Created: 2025/01/23 17:09:06 by sreerink      #+#    #+#                 */
+/*   Updated: 2025/01/23 17:14:13 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	testMap[6][11]=
+void	key_input(mlx_key_data_t keydata, void *ptr)
 {
-	{1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1}
-};
+	t_cube		*cube;
 
-int	main(void)
-{
-	t_cube	*cube;
-
-	cube = init_cube();
-	mlx_loop_hook(cube->mlx, cube_hook, cube);
-	mlx_close_hook(cube->mlx, exit_cube, cube);
-	mlx_key_hook(cube->mlx, key_input, cube);
-	mlx_loop(cube->mlx);
-	mlx_terminate(cube->mlx);
-	return (EXIT_SUCCESS);
+	cube = (t_cube *)ptr;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		exit_cube(cube);
 }
