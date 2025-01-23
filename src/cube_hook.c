@@ -6,20 +6,24 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/23 16:45:32 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/23 16:45:39 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/23 20:00:59 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+static void	calculate_rays()
+{
+}
+
 void	cube_hook(void *ptr)
 {
 	t_cube		*cube;
-	mlx_image_t	*a_frame;
+//	mlx_image_t	*a_frame;
 
 	cube = (t_cube *)ptr;
-	a_frame = get_frame_num(cube->a, cube->a->current_frame);
+//	a_frame = get_frame_num(cube->a, cube->a->current_frame);
 	clear_image(cube->foreground);
-	put_img(cube->foreground, a_frame, 200, 200);
-	update_animation(cube->a, cube->mlx->delta_time);
+//	put_img(cube->foreground, a_frame, 200, 200);
+//	update_animation(cube->a, cube->mlx->delta_time);
 }
