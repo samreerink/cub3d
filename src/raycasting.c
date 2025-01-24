@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   cube_hook.c                                       :+:    :+:             */
+/*   raycasting.c                                      :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
-/*   Created: 2025/01/23 16:45:32 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/24 18:09:15 by sreerink      ########   odam.nl         */
+/*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
+/*   Updated: 2025/01/24 18:47:43 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	cube_hook(void *ptr)
+void	raycasting(t_player *p)
 {
-	t_cube		*cube;
-//	mlx_image_t	*a_frame;
+	int		x;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
 
-	cube = (t_cube *)ptr;
-//	a_frame = get_frame_num(cube->a, cube->a->current_frame);
-	clear_image(cube->foreground);
-//	put_img(cube->foreground, a_frame, 200, 200);
-//	update_animation(cube->a, cube->mlx->delta_time);
+	x = 0;
+	while (x < WIDTH)
+	{
+		camera_x = 2 * x / (double)WIDTH - 1;
+		raydir_x = p->dir_x + p->plane_x * camera_x;
+		raydir_y = p->dir_y + p->plane_y * camera_x;
+		x++;
+	}
 }
