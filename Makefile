@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2025/01/24 18:28:40 by sreerink      ########   odam.nl          #
+#    Updated: 2025/01/27 18:50:04 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME= 		cub3D
 
 RM= 		rm -rf
 
-FLAGS= 		# -Wall -Werror -Wextra
+FLAGS= 		-g3 # -Wall -Werror -Wextra
 
 SRC_DIR=	src
 

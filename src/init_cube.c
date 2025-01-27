@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/14 14:59:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/27 00:44:06 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/27 20:36:32 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ t_cube	*init_cube(void)
 		error_exit(NULL, NULL, cube);
 	if (mlx_image_to_window(cube->mlx, cube->foreground, 0, 0) == -1)
 		error_exit(NULL, NULL, cube);
-//	cube->s = load_sprite_sheet("./skeleton.png", 264, 264, cube->mlx);
-//	cube->a = init_animation(cube->s, 6, 6, 120);
 	return (cube);
 }
