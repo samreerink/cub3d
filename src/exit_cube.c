@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/12/17 22:41:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/23 18:32:11 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/27 00:44:40 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	free_cube(t_cube *cube)
 {
 	free(cube->player);
+	free(cube->rays);
 	if (cube->mlx)
 		mlx_terminate(cube->mlx);
 	free(cube);

@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/14 14:59:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/23 20:16:40 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/27 00:44:06 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ t_cube	*init_cube(void)
 		error_exit(NULL, "ft_calloc", NULL);
 	cube->player = init_player();
 	if (!cube->player)
+		error_exit(NULL, "ft_calloc", cube);
+	cube->rays = ft_calloc(1, sizeof(t_rays));
+	if (!cube->rays)
 		error_exit(NULL, "ft_calloc", cube);
 	cube->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	if (!cube->mlx)
