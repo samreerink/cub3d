@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/23 17:09:06 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/28 02:27:50 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/28 16:38:23 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	key_input(mlx_key_data_t keydata, void *ptr)
 	p = cube->player;
 	m = cube->map;
 	frame_time = cube->mlx->delta_time;
-	move_speed = frame_time * 2.5;
-	rot_speed = frame_time * 1.5;
+	move_speed = frame_time * 3.0;
+	rot_speed = frame_time * 2.0;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		exit_cube(cube);
 	// Keys A and D are temp, need to study the code

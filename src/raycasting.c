@@ -6,16 +6,11 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/28 01:22:02 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/28 17:38:32 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static int	get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
 
 static void	dda_algorithm(char **map, t_rays *r)
 {
@@ -57,7 +52,7 @@ static void	draw_ver_line(int x, t_cube *cube)
 	if (pixel_end >= HEIGHT)
 		pixel_end = HEIGHT - 1;
 	if (r->side == 1)
-		color = color / 2;
+		color = get_rgba(0, 100, 0, 255);
 	y = pixel_start;
 	while (y <= pixel_end)
 	{

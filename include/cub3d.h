@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/28 00:57:57 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/28 17:23:08 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ typedef struct s_cube
 {
 	mlx_t		*mlx;
 	mlx_image_t	*foreground;
+	mlx_image_t	*background;
 	char		**map;
 	t_player	*player;
 	t_rays		*rays;
 }	t_cube;
 
 void	error_exit(char *msg, char *p_msg, t_cube *cube);
+int		get_rgba(int r, int g, int b, int a);
 t_cube	*init_cube(void);
+void	draw_background(t_cube *cube);
 void	cube_hook(void *ptr);
 void	raycasting(t_cube *cube);
 void	key_input(mlx_key_data_t keydata, void *ptr);
