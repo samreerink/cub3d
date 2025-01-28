@@ -6,14 +6,30 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/12/17 22:41:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/27 00:44:40 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/28 00:43:17 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+static void	free_map(char **map)
+{
+	size_t	i;
+
+	i = 0;
+	if (!map)
+		return ;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 static void	free_cube(t_cube *cube)
 {
+	free_map(cube->map);
 	free(cube->player);
 	free(cube->rays);
 	if (cube->mlx)

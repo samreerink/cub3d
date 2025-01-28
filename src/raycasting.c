@@ -6,28 +6,18 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/27 20:35:14 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/28 01:22:02 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	testMap[6][11]=
-{
-	{1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,1,0,0,0,1,0,0,1},
-	{1,0,0,1,0,0,0,1,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1}
-};
 
 static int	get_rgba(int r, int g, int b, int a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
 }
 
-static void	dda_algorithm(t_rays *r)
+static void	dda_algorithm(char **map, t_rays *r)
 {
 	while (1)
 	{
@@ -43,7 +33,7 @@ static void	dda_algorithm(t_rays *r)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		if (testMap[r->map_y][r->map_x] == 1)
+		if (map[r->map_y][r->map_x] == '1')
 			break;
 	}
 }
@@ -114,7 +104,7 @@ void	raycasting(t_cube *cube)
 			r->step_y = 1;
 			r->side_disty = (r->map_y + 1.0 - p->pos_y) * r->delta_disty;
 		}
-		dda_algorithm(r);
+		dda_algorithm(cube->map, r);
 		if (r->side == 0)
 			r->perp_walldist = (r->side_distx - r->delta_distx);
 		else
