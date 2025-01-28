@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/14 14:59:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/28 17:06:19 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/28 19:38:03 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ static void	init_window_and_images(t_cube *cube)
 		error_exit(NULL, NULL, cube);
 }
 
+static void	load_assets(t_cube *cube)
+{
+	cube->wall_1 = load_png_to_texture("/assets/Tile/Tile_03-128x128.png", cube);
+}
+
 t_cube	*init_cube(void)
 {
 	t_cube	*cube;
@@ -86,5 +91,6 @@ t_cube	*init_cube(void)
 	if (!cube->rays)
 		error_exit(NULL, "ft_calloc", cube);
 	init_window_and_images(cube);
+	load_assets(cube);
 	return (cube);
 }
