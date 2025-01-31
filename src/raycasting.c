@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/28 17:38:32 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/01/31 21:36:54 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,25 @@ static void	dda_algorithm(char **map, t_rays *r)
 	}
 }
 
-static void	draw_ver_line(int x, t_cube *cube)
+static void	draw_wall_line(int x, t_cube *cube)
 {
-	uint32_t	color;
+	t_player	*p;
 	t_rays		*r;
+	uint32_t	color;
 	int			line_h;
 	int			y;
 	int			pixel_start;
 	int			pixel_end;
 
-	color = get_rgba(34, 139, 34, 255);
+	mlx_texture_t	*tex;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_x;
+	int				tex_y;
+	int				pitch = 100; // ??
+
+	p = cube->player;
 	r = cube->rays;
 	line_h = (int)(HEIGHT / r->perp_walldist);
 	pixel_start = -line_h / 2 + HEIGHT / 2;
@@ -51,11 +60,32 @@ static void	draw_ver_line(int x, t_cube *cube)
 	pixel_end = line_h / 2 + HEIGHT / 2;
 	if (pixel_end >= HEIGHT)
 		pixel_end = HEIGHT - 1;
-	if (r->side == 1)
-		color = get_rgba(0, 100, 0, 255);
-	y = pixel_start;
-	while (y <= pixel_end)
+	// New >>>>
+	if (r->side == 0)
 	{
+		tex = cube->wall_1;
+		wall_x = p->pos_y + r->perp_walldist * r->raydir_y;
+	}
+	else
+	{
+		tex = cube->wall_2;
+		wall_x = p->pos_x + r->perp_walldist * r->raydir_x;
+	}
+	wall_x -= floor((wall_x));
+	tex_x = (int)(wall_x * (double)(tex->width));
+	if (r->side == 0 && r->raydir_x > 0)
+		tex_x = tex->width - tex_x -1;
+	if (r->side == 1 && r->raydir_y < 0)
+		tex_x = tex->width - tex_x -1;
+	step = 1.0 * tex->height / line_h;
+	tex_pos = (pixel_start - pitch - HEIGHT / 2 + line_h / 2) * step;
+	// New ^^^^
+	y = pixel_start;
+	while (y < pixel_end)
+	{
+		tex_y = (int)tex_pos & (tex->height - 1);
+		tex_pos += step;
+		color = tex->pixels[(tex_y * tex->width + tex_x) * sizeof(int32_t)];
 		mlx_put_pixel(cube->foreground, x, y, color);
 		y++;
 	}
@@ -104,7 +134,7 @@ void	raycasting(t_cube *cube)
 			r->perp_walldist = (r->side_distx - r->delta_distx);
 		else
 			r->perp_walldist = (r->side_disty - r->delta_disty);
-		draw_ver_line(x, cube);
+		draw_wall_line(x, cube);
 		x++;
 	}
 }
