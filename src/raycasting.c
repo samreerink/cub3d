@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/31 21:36:54 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/01 00:49:21 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ static void	dda_algorithm(char **map, t_rays *r)
 	}
 }
 
+static void	temp_px_to_px(mlx_image_t *d, mlx_texture_t *s, uint32_t i_dst, uint32_t i_src)
+{
+	d->pixels[i_dst] = s->pixels[i_src];
+	d->pixels[i_dst + 1] = s->pixels[i_src + 1];
+	d->pixels[i_dst + 2] = s->pixels[i_src + 2];
+	d->pixels[i_dst + 3] = s->pixels[i_src + 3];
+}
+
 static void	draw_wall_line(int x, t_cube *cube)
 {
 	t_player	*p;
@@ -49,7 +57,6 @@ static void	draw_wall_line(int x, t_cube *cube)
 	double			tex_pos;
 	int				tex_x;
 	int				tex_y;
-	int				pitch = 100; // ??
 
 	p = cube->player;
 	r = cube->rays;
@@ -78,15 +85,16 @@ static void	draw_wall_line(int x, t_cube *cube)
 	if (r->side == 1 && r->raydir_y < 0)
 		tex_x = tex->width - tex_x -1;
 	step = 1.0 * tex->height / line_h;
-	tex_pos = (pixel_start - pitch - HEIGHT / 2 + line_h / 2) * step;
+	tex_pos = (pixel_start - HEIGHT / 2 + line_h / 2) * step;
 	// New ^^^^
 	y = pixel_start;
 	while (y < pixel_end)
 	{
 		tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
-		color = tex->pixels[(tex_y * tex->width + tex_x) * sizeof(int32_t)];
-		mlx_put_pixel(cube->foreground, x, y, color);
+		uint32_t px_tex = (tex_y * tex->width + tex_x) * 4;
+		uint32_t px_img = (y * cube->foreground->width + x) * 4;
+		temp_px_to_px(cube->foreground, tex, px_img, px_tex);
 		y++;
 	}
 }

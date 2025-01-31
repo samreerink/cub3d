@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/14 14:59:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/31 19:59:13 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/01 00:35:18 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static void	init_window_and_images(t_cube *cube)
 
 static void	load_assets(t_cube *cube)
 {
-	cube->wall_1 = load_png_to_texture("assets/Tile/Tile_02-128x128.png", cube);
-	cube->wall_2 = load_png_to_texture("assets/Bricks/Bricks_11-128x128.png", cube);
+	cube->wall_1 = load_png_to_texture("assets/Bricks/Bricks_21-128x128.png", cube);
+	cube->wall_2 = load_png_to_texture("assets/Bricks/Bricks_22-128x128.png", cube);
 }
 
 t_cube	*init_cube(void)
