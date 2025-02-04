@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/23 17:09:06 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/01/28 16:38:23 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/04 17:55:39 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ void	key_input(mlx_key_data_t keydata, void *ptr)
 	// Keys A and D are temp, need to study the code
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
 	{
-		if (m[(int)p->pos_y][(int)(p->pos_x + p->dir_x * move_speed)] != '1')
-			p->pos_x += p->dir_x * move_speed;
-		if (m[(int)(p->pos_y + p->dir_y * move_speed)][(int)p->pos_x] != '1')
-			p->pos_y += p->dir_y * move_speed;
+		if (m[(int)(p->pos_y + p->dir_x * move_speed)][(int)p->pos_x] != '1')
+			p->pos_y += p->dir_x * move_speed;
+		if (m[(int)p->pos_y][(int)(p->pos_x + p->dir_y * move_speed)]!= '1')
+			p->pos_x += p->dir_y * move_speed;
 	}
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
 	{
-		if (m[(int)p->pos_y][(int)(p->pos_x - p->dir_x * move_speed)] != '1')
-			p->pos_x -= p->dir_x * move_speed;
-		if (m[(int)(p->pos_y - p->dir_y * move_speed)][(int)p->pos_x] != '1')
-			p->pos_y -= p->dir_y * move_speed;
+		if (m[(int)(p->pos_y - p->dir_x * move_speed)][(int)p->pos_x] != '1')
+			p->pos_y -= p->dir_x * move_speed;
+		if (m[(int)p->pos_y][(int)(p->pos_x - p->dir_y * move_speed)] != '1')
+			p->pos_x -= p->dir_y * move_speed;
 	}
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
 	{

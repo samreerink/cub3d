@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/01 23:27:02 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/04 17:56:52 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 typedef struct s_player
 {
-	double	pos_x;
 	double	pos_y;
+	double	pos_x;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -35,8 +35,8 @@ typedef struct s_player
 
 typedef struct s_rays
 {
-	int		map_x;
 	int		map_y;
+	int		map_x;
 	int		step_x;
 	int		step_y;
 	int		side;

@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/02/01 23:25:47 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/02 00:38:19 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/04 17:54:02 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	set_player_pos(size_t y, size_t x, t_player *p)
 {
-	p->pos_x = x + 0.50;
 	p->pos_y = y + 0.50;
-	printf("p->pos_x = %f\n p->pos_y = %f\n", p->pos_x, p->pos_y);
+	p->pos_x = x + 0.50;
+	printf("p->pos_y = %f\n p->pos_x = %f\n", p->pos_y, p->pos_x);
 	// TO DO: Set direction values
 }
 
@@ -30,7 +30,7 @@ static bool	check_line(char *line, size_t col, t_player *p)
 	{
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 		{
-			if (p->pos_x)
+			if (p->pos_y)
 				return (false);
 			set_player_pos(col, i, p);
 		}

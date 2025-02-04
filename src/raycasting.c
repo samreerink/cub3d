@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/01 00:49:21 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/04 17:57:12 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	dda_algorithm(char **map, t_rays *r)
 		if (r->side_distx < r->side_disty)
 		{
 			r->side_distx += r->delta_distx;
-			r->map_x += r->step_x;
+			r->map_y += r->step_x;
 			r->side = 0;
 		}
 		else
 		{
 			r->side_disty += r->delta_disty;
-			r->map_y += r->step_y;
+			r->map_x += r->step_y;
 			r->side = 1;
 		}
 		if (map[r->map_y][r->map_x] == '1')
@@ -71,12 +71,12 @@ static void	draw_wall_line(int x, t_cube *cube)
 	if (r->side == 0)
 	{
 		tex = cube->wall_1;
-		wall_x = p->pos_y + r->perp_walldist * r->raydir_y;
+		wall_x = p->pos_x + r->perp_walldist * r->raydir_y;
 	}
 	else
 	{
 		tex = cube->wall_2;
-		wall_x = p->pos_x + r->perp_walldist * r->raydir_x;
+		wall_x = p->pos_y + r->perp_walldist * r->raydir_x;
 	}
 	wall_x -= floor((wall_x));
 	tex_x = (int)(wall_x * (double)(tex->width));
@@ -110,8 +110,8 @@ void	raycasting(t_cube *cube)
 	p = cube->player;
 	while (x < WIDTH)
 	{
-		r->map_x = (int)p->pos_x;
 		r->map_y = (int)p->pos_y;
+		r->map_x = (int)p->pos_x;
 		r->camera_x = 2 * x / (double)WIDTH - 1;
 		r->raydir_x = p->dir_x + p->plane_x * r->camera_x;
 		r->raydir_y = p->dir_y + p->plane_y * r->camera_x;
@@ -120,22 +120,22 @@ void	raycasting(t_cube *cube)
 		if (r->raydir_x < 0)
 		{
 			r->step_x = -1;
-			r->side_distx = (p->pos_x - r->map_x) * r->delta_distx;
+			r->side_distx = (p->pos_y - r->map_y) * r->delta_distx;
 		}
 		else
 		{
 			r->step_x = 1;
-			r->side_distx = (r->map_x + 1.0 - p->pos_x) * r->delta_distx;
+			r->side_distx = (r->map_y + 1.0 - p->pos_y) * r->delta_distx;
 		}
 		if (r->raydir_y < 0)
 		{
 			r->step_y = -1;
-			r->side_disty = (p->pos_y - r->map_y) * r->delta_disty;
+			r->side_disty = (p->pos_x - r->map_x) * r->delta_disty;
 		}
 		else
 		{
 			r->step_y = 1;
-			r->side_disty = (r->map_y + 1.0 - p->pos_y) * r->delta_disty;
+			r->side_disty = (r->map_x + 1.0 - p->pos_x) * r->delta_disty;
 		}
 		dda_algorithm(cube->map, r);
 		if (r->side == 0)
