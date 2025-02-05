@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/12/17 22:41:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/02 00:11:16 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/05 16:36:41 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ static void	free_cube(t_cube *cube)
 	free(cube->player);
 	free_map(cube->map);
 	free(cube->rays);
+	if (cube->wall_1)
+		mlx_delete_texture(cube->wall_1);
+	if (cube->wall_2)
+		mlx_delete_texture(cube->wall_2);
+	if (cube->background)
+		mlx_delete_image(cube->mlx, cube->background);
+	if (cube->foreground)
+		mlx_delete_image(cube->mlx, cube->foreground);
 	if (cube->mlx)
 		mlx_terminate(cube->mlx);
 	free(cube);

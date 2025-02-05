@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/02/01 23:25:47 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/04 20:53:53 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/05 16:25:25 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	set_player_pos(size_t y, size_t x, t_player *p)
 {
 	p->pos_y = y + 0.50;
 	p->pos_x = x + 0.50;
-	printf("p->pos_y = %f\n p->pos_x = %f\n", p->pos_y, p->pos_x);
 	// TO DO: Set direction values
 }
 
@@ -56,11 +55,14 @@ size_t	check_map(char *cub_file, t_cube *cube)
 	while (line)
 	{
 		if (!check_line(line, columns, cube->player))
+		{
+			free(line);
 			error_exit("Invalid map", NULL, cube);
+		}
+		free(line);
 		columns++;
 		line = get_next_line(file);
 	}
-	free(line);
 	close(file);
 	return (columns);
 }

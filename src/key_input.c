@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/23 17:09:06 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/04 21:06:42 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/05 16:58:41 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void	key_input(void *ptr)
 			p->pos_y -= p->dir_x * move_speed;
 		if (m[(int)p->pos_y][(int)(p->pos_x - p->dir_y * move_speed)] != '1')
 			p->pos_x -= p->dir_y * move_speed;
+	}
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_A))
+	{
+		if (m[(int)(p->pos_y - p->plane_x * move_speed)][(int)p->pos_x] != '1')
+			p->pos_y -= p->plane_x * move_speed;
+		if (m[(int)p->pos_y][(int)(p->pos_x - p->plane_y * move_speed)] != '1')
+			p->pos_x -= p->plane_y * move_speed;
+	}
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_D))
+	{
+		if (m[(int)(p->pos_y + p->plane_x * move_speed)][(int)p->pos_x] != '1')
+			p->pos_y += p->plane_x * move_speed;
+		if (m[(int)p->pos_y][(int)(p->pos_x + p->plane_y * move_speed)]!= '1')
+			p->pos_x += p->plane_y * move_speed;
 	}
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_LEFT))
 	{

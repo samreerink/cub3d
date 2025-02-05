@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/04 17:57:12 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/05 16:47:10 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,10 @@ static void	dda_algorithm(char **map, t_rays *r)
 	}
 }
 
-static void	temp_px_to_px(mlx_image_t *d, mlx_texture_t *s, uint32_t i_dst, uint32_t i_src)
-{
-	d->pixels[i_dst] = s->pixels[i_src];
-	d->pixels[i_dst + 1] = s->pixels[i_src + 1];
-	d->pixels[i_dst + 2] = s->pixels[i_src + 2];
-	d->pixels[i_dst + 3] = s->pixels[i_src + 3];
-}
-
 static void	draw_wall_line(int x, t_cube *cube)
 {
 	t_player	*p;
 	t_rays		*r;
-	uint32_t	color;
 	int			line_h;
 	int			y;
 	int			pixel_start;
@@ -94,7 +85,7 @@ static void	draw_wall_line(int x, t_cube *cube)
 		tex_pos += step;
 		uint32_t px_tex = (tex_y * tex->width + tex_x) * 4;
 		uint32_t px_img = (y * cube->foreground->width + x) * 4;
-		temp_px_to_px(cube->foreground, tex, px_img, px_tex);
+		tex_px_to_px(cube->foreground, tex, px_img, px_tex);
 		y++;
 	}
 }
