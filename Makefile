@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2025/02/04 20:41:35 by sreerink      ########   odam.nl          #
+#    Updated: 2025/02/01 23:47:24 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME= 		cub3D
 RM= 		rm -rf
 
 FLAGS= 		-g3 # -Wall -Werror -Wextra
-DEPSFLAGS := -MMD -MP
 
 SRC_DIR=	src
 
@@ -26,7 +25,6 @@ SRCS=		$(addprefix $(SRC_DIR)/, main.c init_cube.c cube_hook.c \
 			check_map.c image.c get_rgba.c)	
 
 OBJ=		$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
-DEPS    := $(OBJ:.o=.d)
 
 MLX=		./MLX42
 
@@ -50,7 +48,7 @@ $(MLX_LIB):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) $(DEPSFLAGS) $(HEADERS) -c $< -o $@
+	$(CC) $(FLAGS) $(HEADERS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) -C ./Libft
@@ -79,5 +77,3 @@ fclean:	clean
 re:		fclean all
 
 .PHONY:	all clean fclean re
-
--include $(DEPS)
