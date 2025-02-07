@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/05 16:33:25 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/07 16:24:10 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ typedef struct s_cube
 	mlx_t			*mlx;
 	mlx_image_t		*foreground;
 	mlx_image_t		*background;
-	mlx_texture_t	*wall_1;
-	mlx_texture_t	*wall_2;
+	mlx_texture_t	*wall_n;
+	mlx_texture_t	*wall_s;
+	mlx_texture_t	*wall_w;
+	mlx_texture_t	*wall_e;
 	char			**map;
 	t_player		*player;
 	t_rays			*rays;

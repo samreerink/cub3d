@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/02/01 23:25:47 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/05 19:32:29 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/07 19:08:13 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static bool	check_line(char *line, size_t col, t_player *p)
 				return (false);
 			set_player_pos(col, i, line[i], p);
 		}
-		else if (line[i] != '0' && line[i] != '1')
+		else if (line[i] != '0' && line[i] != '1' && line[i] != ' ')
 			return (false);
 		i++;
 	}

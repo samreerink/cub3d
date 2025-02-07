@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/05 16:47:10 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/07 16:45:41 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,29 @@ static void	draw_wall_line(int x, t_cube *cube)
 	if (pixel_end >= HEIGHT)
 		pixel_end = HEIGHT - 1;
 	// New >>>>
+	// Wall texture selection
 	if (r->side == 0)
 	{
-		tex = cube->wall_1;
+		if (r->raydir_x > 0)
+			tex = cube->wall_e;
+		else
+			tex = cube->wall_w;
 		wall_x = p->pos_x + r->perp_walldist * r->raydir_y;
 	}
 	else
 	{
-		tex = cube->wall_2;
+		if (r->raydir_y > 0)
+			tex = cube->wall_s;
+		else
+			tex = cube->wall_n;
 		wall_x = p->pos_y + r->perp_walldist * r->raydir_x;
 	}
 	wall_x -= floor((wall_x));
 	tex_x = (int)(wall_x * (double)(tex->width));
 	if (r->side == 0 && r->raydir_x > 0)
-		tex_x = tex->width - tex_x -1;
+		tex_x = tex->width - tex_x - 1;
 	if (r->side == 1 && r->raydir_y < 0)
-		tex_x = tex->width - tex_x -1;
+		tex_x = tex->width - tex_x - 1;
 	step = 1.0 * tex->height / line_h;
 	tex_pos = (pixel_start - HEIGHT / 2 + line_h / 2) * step;
 	// New ^^^^
