@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/14 14:59:41 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/04 21:02:47 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/07 15:42:52 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ static void	init_player(t_cube *cube)
 	player = ft_calloc(1, sizeof(t_player));
 	if (!player)
 		error_exit(NULL, "ft_calloc", cube);
-	player->dir_x = -1;
-	player->dir_y = 0;
-	player->plane_x = 0;
-	player->plane_y = 0.66;
 	cube->player = player;
 }
 
@@ -74,8 +70,8 @@ static void	init_window_and_images(t_cube *cube)
 
 static void	load_assets(t_cube *cube)
 {
-	cube->wall_1 = load_png_to_texture("assets/Bricks/Bricks_21-128x128.png", cube);
-	cube->wall_2 = load_png_to_texture("assets/Bricks/Bricks_22-128x128.png", cube);
+	cube->wall_1 = load_png_to_texture("assets/reinier_sprites/wall/red.png", cube);
+	cube->wall_2 = load_png_to_texture("assets/reinier_sprites/wall/pink.png", cube);
 }
 
 t_cube	*init_cube(char *cub_file)

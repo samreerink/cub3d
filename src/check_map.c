@@ -6,17 +6,44 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/02/01 23:25:47 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/05 16:25:25 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/05 19:32:29 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	set_player_pos(size_t y, size_t x, t_player *p)
+static void	set_player_pos(size_t y, size_t x, char spawn_dir, t_player *p)
 {
 	p->pos_y = y + 0.50;
 	p->pos_x = x + 0.50;
-	// TO DO: Set direction values
+	if (spawn_dir == 'N')
+	{
+		p->dir_x = -1;
+		p->dir_y = 0;
+		p->plane_x = 0;
+		p->plane_y = 0.66;
+	}
+	if (spawn_dir == 'S')
+	{
+		p->dir_x = 1;
+		p->dir_y = 0;
+		p->plane_x = 0;
+		p->plane_y = -0.66;
+	}
+	if (spawn_dir == 'E')
+	{
+		p->dir_x = 0;
+		p->dir_y = 1;
+		p->plane_x = 0.66;
+		p->plane_y = 0;
+	}
+	if (spawn_dir == 'W')
+	{
+		p->dir_x = 0;
+		p->dir_y = -1;
+		p->plane_x = -0.66;
+		p->plane_y = 0;
+	}
 }
 
 static bool	check_line(char *line, size_t col, t_player *p)
@@ -31,7 +58,7 @@ static bool	check_line(char *line, size_t col, t_player *p)
 		{
 			if (p->pos_y)
 				return (false);
-			set_player_pos(col, i, p);
+			set_player_pos(col, i, line[i], p);
 		}
 		else if (line[i] != '0' && line[i] != '1')
 			return (false);
