@@ -6,11 +6,23 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/24 18:28:13 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/09 15:54:08 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/09 16:53:34 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	calc_deltadist(t_rays *r)
+{
+	if (r->raydir_x == 0)
+		r->delta_distx = INFINITY;
+	else
+		r->delta_distx = fabs(1 / r->raydir_x);
+	if (r->raydir_y == 0)
+		r->delta_disty = INFINITY;
+	else
+		r->delta_disty = fabs(1 / r->raydir_y);
+}
 
 static void	calc_step_and_sidedist(t_rays *r, t_player *p)
 {
@@ -53,7 +65,7 @@ static void	dda_algorithm(char **map, t_rays *r)
 			r->side = 1;
 		}
 		if (map[r->map_y][r->map_x] == '1')
-			break;
+			break ;
 	}
 }
 
@@ -73,8 +85,7 @@ void	raycasting(t_cube *cube)
 		r->camera_x = 2 * x / (double)WIDTH - 1;
 		r->raydir_x = p->dir_x + p->plane_x * r->camera_x;
 		r->raydir_y = p->dir_y + p->plane_y * r->camera_x;
-		r->delta_distx = (r->raydir_x == 0) ? 1e30 : fabs(1 / r->raydir_x);
-		r->delta_disty = (r->raydir_y == 0) ? 1e30 : fabs(1 / r->raydir_y);
+		calc_deltadist(r);
 		calc_step_and_sidedist(r, p);
 		dda_algorithm(cube->map, r);
 		if (r->side == 0)

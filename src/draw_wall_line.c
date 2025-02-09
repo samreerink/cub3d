@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/02/09 15:04:07 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/09 15:40:43 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/09 17:12:52 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ static void	calculate_texture_pos(t_draw_w_data *d, t_cube *cube)
 void	draw_wall_line(int x, t_cube *cube)
 {
 	int				y;
-	uint32_t		px_tex;
-	uint32_t		px_img;
 	t_player		*p;
 	t_rays			*r;
 	t_draw_w_data	d;
@@ -85,9 +83,9 @@ void	draw_wall_line(int x, t_cube *cube)
 	{
 		d.tex_y = (int)d.tex_pos & (d.tex->height - 1);
 		d.tex_pos += d.step;
-		px_tex = (d.tex_y * d.tex->width + d.tex_x) * 4;
-		px_img = (y * cube->foreground->width + x) * 4;
-		tex_px_to_px(cube->foreground, d.tex, px_img, px_tex);
+		d.px_tex = (d.tex_y * d.tex->width + d.tex_x) * 4;
+		d.px_img = (y * cube->foreground->width + x) * 4;
+		px(cube->foreground, d.tex, d.px_img, d.px_tex);
 		y++;
 	}
 }

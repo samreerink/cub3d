@@ -6,7 +6,7 @@
 #    By: sreerink <sreerink@student.codam.nl>        +#+                       #
 #                                                   +#+                        #
 #    Created: 2024/11/19 13:45:48 by sreerink      #+#    #+#                  #
-#    Updated: 2025/02/09 15:04:27 by sreerink      ########   odam.nl          #
+#    Updated: 2025/02/09 18:36:52 by sreerink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ OBJ_DIR=	obj
 
 SRCS=		$(addprefix $(SRC_DIR)/, main.c init_cube.c cube_hook.c \
 			draw_background.c raycasting.c key_input.c exit_cube.c \
-			draw_wall_line.c check_map.c image.c get_rgba.c)	
+			draw_wall_line.c check_map.c image.c get_rgba.c \
+			movement_keys.c rotate_keys.c)	
 
 OBJ=		$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 

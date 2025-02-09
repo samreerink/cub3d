@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/09 15:54:15 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/09 18:36:06 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_draw_w_data
 	double			tex_pos;
 	int				tex_x;
 	int				tex_y;
+	uint32_t		px_tex;
+	uint32_t		px_img;
 }	t_draw_w_data;
 
 typedef struct s_player
@@ -81,7 +83,7 @@ typedef struct s_cube
 void			error_exit(char *msg, char *p_msg, t_cube *cube);
 int				get_rgba(int r, int g, int b, int a);
 mlx_texture_t	*load_png_to_texture(char *path_png, t_cube *cube);
-void			tex_px_to_px(mlx_image_t *d, mlx_texture_t *s, uint32_t i_dst, uint32_t i_src);
+void			px(mlx_image_t *d, mlx_texture_t *s, uint32_t di, uint32_t si);
 t_cube			*init_cube(char *cub_file);
 size_t			check_map(char *cub_file, t_cube *cube);
 void			draw_background(t_cube *cube);
@@ -89,6 +91,12 @@ void			draw_wall_line(int x, t_cube *cube);
 void			cube_hook(void *ptr);
 void			raycasting(t_cube *cube);
 void			key_input(void *ptr);
+void			w_input(double move_speed, t_cube *cube);
+void			s_input(double move_speed, t_cube *cube);
+void			a_input(double move_speed, t_cube *cube);
+void			d_input(double move_speed, t_cube *cube);
+void			left_input(double rot_speed, t_cube *cube);
+void			right_input(double rot_speed, t_cube *cube);
 void			exit_cube(void *ptr);
 
 #endif

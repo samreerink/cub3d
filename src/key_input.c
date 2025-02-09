@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/01/23 17:09:06 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/05 16:58:41 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/09 18:38:18 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,64 +15,26 @@
 void	key_input(void *ptr)
 {
 	t_cube		*cube;
-	t_player	*p;
-	char		**m;
-	double		frame_time;
+	double		const_time;
 	double		move_speed;
 	double		rot_speed;
 
 	cube = (t_cube *)ptr;
-	p = cube->player;
-	m = cube->map;
-	frame_time = cube->mlx->delta_time;
-	move_speed = frame_time * 3.0;
-	rot_speed = frame_time * 2.0;
+	const_time = 0.03;
+	move_speed = const_time * 3.0;
+	rot_speed = const_time * 2.0;
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_ESCAPE))
 		exit_cube(cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_W))
-	{
-		if (m[(int)(p->pos_y + p->dir_x * move_speed)][(int)p->pos_x] != '1')
-			p->pos_y += p->dir_x * move_speed;
-		if (m[(int)p->pos_y][(int)(p->pos_x + p->dir_y * move_speed)]!= '1')
-			p->pos_x += p->dir_y * move_speed;
-	}
+		w_input(move_speed, cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_S))
-	{
-		if (m[(int)(p->pos_y - p->dir_x * move_speed)][(int)p->pos_x] != '1')
-			p->pos_y -= p->dir_x * move_speed;
-		if (m[(int)p->pos_y][(int)(p->pos_x - p->dir_y * move_speed)] != '1')
-			p->pos_x -= p->dir_y * move_speed;
-	}
+		s_input(move_speed, cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_A))
-	{
-		if (m[(int)(p->pos_y - p->plane_x * move_speed)][(int)p->pos_x] != '1')
-			p->pos_y -= p->plane_x * move_speed;
-		if (m[(int)p->pos_y][(int)(p->pos_x - p->plane_y * move_speed)] != '1')
-			p->pos_x -= p->plane_y * move_speed;
-	}
+		a_input(move_speed, cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_D))
-	{
-		if (m[(int)(p->pos_y + p->plane_x * move_speed)][(int)p->pos_x] != '1')
-			p->pos_y += p->plane_x * move_speed;
-		if (m[(int)p->pos_y][(int)(p->pos_x + p->plane_y * move_speed)]!= '1')
-			p->pos_x += p->plane_y * move_speed;
-	}
+		d_input(move_speed, cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_LEFT))
-	{
-		double oldDirX = p->dir_x;
-		p->dir_x = p->dir_x * cos(rot_speed) - p->dir_y * sin(rot_speed);
-		p->dir_y = oldDirX * sin(rot_speed) + p->dir_y * cos(rot_speed);
-		double oldPlaneX = p->plane_x;
-		p->plane_x = p->plane_x * cos(rot_speed) - p->plane_y * sin(rot_speed);
-		p->plane_y = oldPlaneX * sin(rot_speed) + p->plane_y * cos(rot_speed);
-	}
+		left_input(rot_speed, cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_RIGHT))
-	{
-		double oldDirX = p->dir_x;
-		p->dir_x = p->dir_x * cos(-rot_speed) - p->dir_y * sin(-rot_speed);
-		p->dir_y = oldDirX * sin(-rot_speed) + p->dir_y * cos(-rot_speed);
-		double oldPlaneX = p->plane_x;
-		p->plane_x = p->plane_x * cos(-rot_speed) - p->plane_y * sin(-rot_speed);
-		p->plane_y = oldPlaneX * sin(-rot_speed) + p->plane_y * cos(-rot_speed);
-	}
+		right_input(rot_speed, cube);
 }
