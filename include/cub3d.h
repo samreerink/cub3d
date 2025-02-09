@@ -6,7 +6,7 @@
 /*   By: sreerink <sreerink@student.codam.nl>        +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2024/11/19 15:00:08 by sreerink      #+#    #+#                 */
-/*   Updated: 2025/02/07 16:24:10 by sreerink      ########   odam.nl         */
+/*   Updated: 2025/02/09 15:54:15 by sreerink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@
 
 # define WIDTH 1200
 # define HEIGHT 800
+
+typedef struct s_draw_w_data
+{
+	int				line_h;
+	int				y;
+	int				pixel_start;
+	int				pixel_end;
+	mlx_texture_t	*tex;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_x;
+	int				tex_y;
+}	t_draw_w_data;
 
 typedef struct s_player
 {
@@ -71,6 +85,7 @@ void			tex_px_to_px(mlx_image_t *d, mlx_texture_t *s, uint32_t i_dst, uint32_t i
 t_cube			*init_cube(char *cub_file);
 size_t			check_map(char *cub_file, t_cube *cube);
 void			draw_background(t_cube *cube);
+void			draw_wall_line(int x, t_cube *cube);
 void			cube_hook(void *ptr);
 void			raycasting(t_cube *cube);
 void			key_input(void *ptr);
